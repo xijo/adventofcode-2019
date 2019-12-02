@@ -1,0 +1,5 @@
+require_relative 'intcode/computer'
+require_relative 'intcode/instruction'
+require_relative 'intcode/add'
+require_relative 'intcode/multiply'
+require_relative 'intcode/terminate'
