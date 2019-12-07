@@ -5,6 +5,7 @@ class Input < Instruction
     a, _ = params
     a.write(computer.memory, computer.consume_input)
     computer.ipointer += LENGTH
+    :continue
   end
 end
 

@@ -8,6 +8,7 @@ class JumpIfTrue < Instruction
     else
       computer.ipointer = b.read(computer.memory)
     end
+    :continue
   end
 end
 

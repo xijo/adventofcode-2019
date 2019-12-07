@@ -6,6 +6,7 @@ class Equals < Instruction
     val        = a.read(computer.memory) == b.read(computer.memory) ? 1 : 0
     c.write(computer.memory, val)
     computer.ipointer += LENGTH
+    :continue
   end
 end
 

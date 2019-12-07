@@ -5,6 +5,7 @@ class Output < Instruction
     a, _ = params
     a.read(computer.memory).tap { |r| computer.log.puts r }
     computer.ipointer += LENGTH
+    :pause
   end
 end
 

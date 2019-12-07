@@ -40,16 +40,37 @@ class Computer
     Instruction.build(memory[ipointer, Instruction::MAX_LENGTH]).set_log(@log).set_input(@input)
   end
 
+  def terminated?
+    @status == :terminate
+  end
+
+  def paused?
+    @status == :pause
+  end
+
+  def running?
+    @status == :continue
+  end
+
   def run
-    catch :terminate do
-      while true
-        if @debug
-          puts @memory.inspect
-          puts instruction.inspect
-        end
-        instruction.execute(self)
-      end
+    @status = :continue
+
+    # catch :terminate do
+    #   catch :paused do
+    while running?
+      # if @debug
+      #   puts @memory.inspect
+      #   puts instruction.inspect
+      # end
+      @status = instruction.execute(self)
     end
+
+    #   @status = :terminated
+    # end
+
+
+    #   @status = :paused
+    # end
     self
   end
 end

@@ -5,6 +5,7 @@ class Add < Instruction
     a, b, c = params
     c.write(computer.memory, a.read(computer.memory) + b.read(computer.memory))
     computer.ipointer += LENGTH
+    :continue
   end
 end
 

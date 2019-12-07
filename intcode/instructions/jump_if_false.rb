@@ -8,6 +8,7 @@ class JumpIfFalse < Instruction
     else
       computer.ipointer += LENGTH
     end
+    :continue
   end
 end
 
