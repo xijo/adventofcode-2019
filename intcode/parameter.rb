@@ -21,7 +21,7 @@ class Parameter
     if mode.zero?
       memory[value] = given_value
     else
-      raise "invalid write parameter mode #{mode.inspect}"
+      raise ArgumentError, "invalid write parameter mode #{mode.inspect}"
     end
   end
 end

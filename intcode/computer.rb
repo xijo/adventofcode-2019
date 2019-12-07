@@ -1,14 +1,14 @@
 require_relative 'instruction'
 
 class Computer
-  attr_reader :ipointer, :memory
-  attr_accessor :input, :log
+  attr_reader :memory
+  attr_accessor :input, :log, :ipointer
 
-  def initialize(program, log: STDOUT, input: 1)
+  def initialize(program, log: STDOUT, input: [])
     @ipointer = 0
     @memory   = program.split(?,).map(&:to_i)
     @log      = log
-    @input    = input
+    @input    = Array(input)
   end
 
   def write(addr, value)
@@ -23,12 +23,16 @@ class Computer
     memory.join(?,)
   end
 
+  def consume_input
+    @input.shift
+  end
+
   def read_log
     @log.tap(&:rewind).read
   end
 
   def set_input(value)
-    @input = value
+    @input = Array(value)
     self
   end
 
@@ -43,7 +47,7 @@ class Computer
           puts @memory.inspect
           puts instruction.inspect
         end
-        @memory, @ipointer = instruction.execute(memory, ipointer)
+        instruction.execute(self)
       end
     end
     self

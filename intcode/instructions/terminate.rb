@@ -1,7 +1,7 @@
 class Terminate < Instruction
   LENGTH = 1
 
-  def execute(memory, ipointer)
+  def execute(computer)
     throw :terminate
   end
 end

@@ -25,12 +25,12 @@ describe Computer do
     let(:computer) { Computer.new('3,9,8,9,10,9,4,9,99,-1,8', log: StringIO.new) }
 
     it 'logs 0 if input is not 8' do
-      computer.input = 9
+      computer.input = [9]
       expect(computer.run.read_log).to eq "0\n"
     end
 
     it 'logs 1 if input equals 8' do
-      computer.input = 8
+      computer.input = [8]
       expect(computer.run.read_log).to eq "1\n"
     end
   end
@@ -39,17 +39,17 @@ describe Computer do
     let(:computer) { Computer.new('3,9,7,9,10,9,4,9,99,-1,8', log: StringIO.new) }
 
     it 'logs 1 if input is less than 8' do
-      computer.input = 7
+      computer.input = [7]
       expect(computer.run.read_log).to eq "1\n"
     end
 
     it 'logs 0 if input higher than 8' do
-      computer.input = 9
+      computer.input = [9]
       expect(computer.run.read_log).to eq "0\n"
     end
 
     it 'logs 0 if input equals 8' do
-      computer.input = 8
+      computer.input = [8]
       expect(computer.run.read_log).to eq "0\n"
     end
   end
@@ -58,17 +58,17 @@ describe Computer do
     let(:computer) { Computer.new('3,3,1107,-1,8,3,4,3,99', log: StringIO.new) }
 
     it 'logs 1 if input is less than 8' do
-      computer.input = 7
+      computer.input = [7]
       expect(computer.run.read_log).to eq "1\n"
     end
 
     it 'logs 0 if input higher than 8' do
-      computer.input = 9
+      computer.input = [9]
       expect(computer.run.read_log).to eq "0\n"
     end
 
     it 'logs 0 if input equals 8' do
-      computer.input = 8
+      computer.input = [8]
       expect(computer.run.read_log).to eq "0\n"
     end
   end
@@ -89,15 +89,18 @@ describe Computer do
     let(:computer) { Computer.new('3,21,1008,21,8,20,1005,20,22,107,8,21,20,1006,20,31,1106,0,36,98,0,0,1002,21,125,20,4,20,1105,1,46,104,999,1105,1,46,1101,1000,1,20,4,20,1105,1,46,98,99', log: StringIO.new) }
 
     it 'returns 999 for lower-8' do
-      expect(computer.set_input(7).run.read_log).to eq "999\n"
+      computer.input = [7]
+      expect(computer.run.read_log).to eq "999\n"
     end
 
     it 'returns 1000 for 8' do
-      expect(computer.set_input(8).run.read_log).to eq "1000\n"
+      computer.input = [8]
+      expect(computer.run.read_log).to eq "1000\n"
     end
 
     it 'returns 1001 for higher-than-8' do
-      expect(computer.set_input(123234).run.read_log).to eq "1001\n"
+      computer.input = [123323]
+      expect(computer.run.read_log).to eq "1001\n"
     end
   end
 end
