@@ -37,6 +37,9 @@ class Instruction
     "#{self.class.name.rjust(20)} #{opcode}, #{params.inspect}"
   end
 
+  def change_position
+  end
+
   def length
     self.class.const_get(:LENGTH)
   end

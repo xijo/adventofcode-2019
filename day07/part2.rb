@@ -7,7 +7,7 @@ values = (5..9).to_a.permutation.map do |permutation|
 
   computers = []
   permutation.each_with_index do |phase, index|
-    computers[index] = Computer.new(program, input: phase, log: StringIO.new)
+    computers[index] = Computer.new(program, input: phase, log: StringIO.new, name: "Intcode Computer #{index}")
   end
 
   input = 0

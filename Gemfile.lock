@@ -15,12 +15,18 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.9.0)
     rspec-support (3.9.0)
+    ruby-terminfo (0.1.1)
+    term-ansicolor (1.7.1)
+      tins (~> 1.0)
+    tins (1.22.2)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   rspec
+  ruby-terminfo
+  term-ansicolor
 
 BUNDLED WITH
    1.17.2

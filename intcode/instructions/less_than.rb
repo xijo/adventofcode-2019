@@ -8,6 +8,10 @@ class LessThan < Instruction
     computer.ipointer += LENGTH
     :continue
   end
+
+  def change_position
+    params.last.value
+  end
 end
 
 Instruction.register(7, LessThan)

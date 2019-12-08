@@ -7,6 +7,10 @@ class Input < Instruction
     computer.ipointer += LENGTH
     :continue
   end
+
+  def change_position
+    params.first.value
+  end
 end
 
 Instruction.register(3, Input)
