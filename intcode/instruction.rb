@@ -40,6 +40,9 @@ class Instruction
   def change_position
   end
 
+  def read_position
+  end
+
   def length
     self.class.const_get(:LENGTH)
   end

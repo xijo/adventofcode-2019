@@ -3,7 +3,7 @@ class Multiply < Instruction
 
   def execute(computer)
     a, b, c = params
-    c.write(computer.memory, a.read(computer.memory) * b.read(computer.memory))
+    c.write(computer, a.read(computer) * b.read(computer))
     computer.ipointer += LENGTH
     :continue
   end

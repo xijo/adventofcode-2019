@@ -3,9 +3,9 @@ class Output < Instruction
 
   def execute(computer)
     a, _ = params
-    a.read(computer.memory).tap { |r| computer.log.puts r }
+    a.read(computer).tap { |r| computer.log.puts r }
     computer.ipointer += LENGTH
-    :pause
+    ENV['INTCODE_PAUSE'].to_i == 1 ? :pause : :continue
   end
 end
 

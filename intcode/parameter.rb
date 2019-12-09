@@ -9,19 +9,19 @@ class Parameter
     "<Parameter value=#{value} mode=#{mode}>"
   end
 
-  def read(memory)
-    if mode.zero?
-      memory[value]
-    else
-      value
+  def read(computer)
+    case mode
+    when 0 then computer.memory[value].to_i
+    when 1 then value
+    when 2 then (computer.memory[value + computer.relative_base]).to_i
     end
   end
 
-  def write(memory, given_value)
-    if mode.zero?
-      memory[value] = given_value
-    else
-      raise ArgumentError, "invalid write parameter mode #{mode.inspect}"
+  def write(computer, given_value)
+    case mode
+    when 0 then computer.memory[value] = given_value
+    when 1 then raise ArgumentError, "invalid write parameter mode #{mode.inspect}"
+    when 2 then computer.memory[value + computer.relative_base] = given_value
     end
   end
 end

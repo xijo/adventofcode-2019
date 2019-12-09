@@ -2,14 +2,15 @@ require_relative 'instruction'
 
 class Computer
   attr_reader :memory, :name
-  attr_accessor :input, :log, :ipointer
+  attr_accessor :input, :log, :ipointer, :relative_base
 
   def initialize(program, name: 'Intcode Computer', log: STDOUT, input: [])
-    @ipointer = 0
-    @memory   = program.split(?,).map(&:to_i)
-    @log      = log
-    @input    = Array(input)
-    @name     = name
+    @ipointer      = 0
+    @memory        = program.split(?,).map(&:to_i)
+    @log           = log
+    @input         = Array(input)
+    @name          = name
+    @relative_base = 0
   end
 
   def write(addr, value)
@@ -56,25 +57,13 @@ class Computer
   def run
     @status = :continue
 
-    # catch :terminate do
-    #   catch :paused do
     while running?
-      # if @debug
-      #   puts @memory.inspect
-      #   puts instruction.inspect
-      # end
-      Printer.new.run(self, instruction)
-      # print_line
-      # sleep 0.5
+      if delay = ENV['INTCODE_DELAY']
+        Printer.new.run(self, instruction)
+        sleep delay.to_i * 0.01
+      end
       @status = instruction.execute(self)
     end
-
-    #   @status = :terminated
-    # end
-
-
-    #   @status = :paused
-    # end
     self
   end
 end

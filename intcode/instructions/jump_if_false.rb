@@ -3,8 +3,8 @@ class JumpIfFalse < Instruction
 
   def execute(computer)
     a, b = params
-    if a.read(computer.memory).zero?
-      computer.ipointer = b.read(computer.memory)
+    if a.read(computer).zero?
+      computer.ipointer = b.read(computer)
     else
       computer.ipointer += LENGTH
     end

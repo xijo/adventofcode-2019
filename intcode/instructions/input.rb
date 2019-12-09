@@ -3,7 +3,7 @@ class Input < Instruction
 
   def execute(computer)
     a, _ = params
-    a.write(computer.memory, computer.consume_input)
+    a.write(computer, computer.consume_input)
     computer.ipointer += LENGTH
     :continue
   end

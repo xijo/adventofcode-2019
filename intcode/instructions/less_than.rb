@@ -3,8 +3,8 @@ class LessThan < Instruction
 
   def execute(computer)
     a, b, c    = params
-    val        = a.read(computer.memory) < b.read(computer.memory) ? 1 : 0
-    c.write(computer.memory, val)
+    val        = a.read(computer) < b.read(computer) ? 1 : 0
+    c.write(computer, val)
     computer.ipointer += LENGTH
     :continue
   end

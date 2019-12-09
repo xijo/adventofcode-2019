@@ -3,13 +3,20 @@ class Add < Instruction
 
   def execute(computer)
     a, b, c = params
-    c.write(computer.memory, a.read(computer.memory) + b.read(computer.memory))
+    c.write(computer, a.read(computer) + b.read(computer))
     computer.ipointer += LENGTH
     :continue
   end
 
   def change_position
     params.last.value
+  end
+
+  def read_position
+    [
+      params.first.value,
+      params[1].value,
+    ]
   end
 end
 
