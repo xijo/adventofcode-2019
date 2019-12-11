@@ -2,15 +2,17 @@ require_relative 'instruction'
 
 class Computer
   attr_reader :memory, :name
-  attr_accessor :input, :log, :ipointer, :relative_base
+  attr_accessor :input, :log, :ipointer, :relative_base, :on_output
 
-  def initialize(program, name: 'Intcode Computer', log: STDOUT, input: [])
+  def initialize(program, name: 'Intcode Computer', log: STDOUT, input: [], on_output: :continue)
     @ipointer      = 0
     @memory        = program.split(?,).map(&:to_i)
     @log           = log
     @input         = Array(input)
     @name          = name
     @relative_base = 0
+    @on_output     = on_output
+    @status        = :continue
   end
 
   def write(addr, value)
@@ -31,6 +33,12 @@ class Computer
 
   def read_log
     @log.tap(&:rewind).read
+  end
+
+  def read_and_flush
+    result = read_log
+    @log = StringIO.new
+    result.strip
   end
 
   def set_input(value)

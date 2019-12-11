@@ -44,7 +44,7 @@ class Grid
 
     table = (min_y...max_y).to_a.map do |y|
       row = (min_x...max_x).to_a.map do |x|
-        get(x, y).to_s.rjust(max_length)
+        @mem[y][x].to_s.rjust(max_length)     # get without dup-setting to not expand the grid
       end.join(' ')
       "#{y.to_s.rjust(axis)} #{row}"
     end.reverse.join(?\n)
